@@ -36,10 +36,11 @@ async def list_blob():
     return {"blobs": blob_list}
 
 @app.get("/download-blob")
-async def get_blob_data():
-    
+async def get_blob_data(file_path: str = None):
+    if not file_path:
+            raise HTTPException(status_code=400, detail="File path is required")
     container_name = 'valorant'
-    blob_name = 'groupA_valorant/groupB_table.json'
+    blob_name = file_path
 
     # get the container client 
     container_client = blob_service_client.get_container_client(container=container_name)
