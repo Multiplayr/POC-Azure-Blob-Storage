@@ -58,7 +58,7 @@ async def create_upload_file(file: UploadFile = File(...), file_path: str = None
             raise HTTPException(status_code=400, detail="File path is required")
         
          # Specify the desired blob path within the container
-        blob_path = "groupA_valorant/" + file_path + "/" + file.filename
+        blob_path = file_path + "/" + file.filename
 
         # Specify the local file path
         local_file_path = f"/tmp/{file.filename}" 
